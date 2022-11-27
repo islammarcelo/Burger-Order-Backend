@@ -9,7 +9,7 @@ Backend by spring boot for burger order system.
 - 🐥 Used Java & Spring Boot Framework.
 - 🐥 Used Spring Data JPA.
 - 🐥 Used PostgreSQL Database.
-- 🐥 Used MVC Architectur Patter.
+- 🐥 Used MVC Architectur Pattern.
 - 🐥 Used Dependency injection.
 - 📝 Writing Clean Code As I Can.
 
