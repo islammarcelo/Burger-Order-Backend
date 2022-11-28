@@ -1,4 +1,4 @@
-package com.example.demo.items;
+package com.example.demo.item;
 
 import javax.persistence.*;
 
