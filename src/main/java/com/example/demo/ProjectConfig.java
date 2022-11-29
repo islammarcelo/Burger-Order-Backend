@@ -58,11 +58,13 @@ public class ProjectConfig {
         return args -> {
             CustomerOrder order1 = new CustomerOrder(
                     "01-01-2020",
-                    130.0
+                    130.0,
+                    new BurgerUser(1,"Islam","Adel",1234567)
             );
             CustomerOrder order2 = new CustomerOrder(
                     "01-01-2020",
-                    190.0
+                    190.0,
+                    new BurgerUser(1,"mohamed","Adel",1234567)
             );
             orderRepository.saveAll(List.of(order1,order2));
         };

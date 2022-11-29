@@ -1,5 +1,7 @@
 package com.example.demo.order;
 
+import com.example.demo.user.BurgerUser;
+
 import javax.persistence.*;
 @Entity
 @Table
@@ -19,19 +21,23 @@ public class CustomerOrder {
     private int id;
     private String time;
     private double totalCost;
+    @ManyToOne
+    private BurgerUser burgerUser;
 
     public CustomerOrder() {
     }
 
-    public CustomerOrder(int id, String time, double totalCost) {
+    public CustomerOrder(String time, double totalCost, BurgerUser burgerUser) {
+        this.time = time;
+        this.totalCost = totalCost;
+        this.burgerUser = burgerUser;
+    }
+
+    public CustomerOrder(int id, String time, double totalCost, BurgerUser burgerUser) {
         this.id = id;
         this.time = time;
         this.totalCost = totalCost;
-    }
-
-    public CustomerOrder(String time, double totalCost) {
-        this.time = time;
-        this.totalCost = totalCost;
+        this.burgerUser = burgerUser;
     }
 
     public int getId() {
@@ -42,11 +48,11 @@ public class CustomerOrder {
         this.id = id;
     }
 
-    public String getData() {
+    public String getTime() {
         return time;
     }
 
-    public void setData(String time) {
+    public void setTime(String time) {
         this.time = time;
     }
 
@@ -58,11 +64,19 @@ public class CustomerOrder {
         this.totalCost = totalCost;
     }
 
+    public BurgerUser getBurgerUser() {
+        return burgerUser;
+    }
+
+    public void setBurgerUser(BurgerUser burgerUser) {
+        this.burgerUser = burgerUser;
+    }
+
     @Override
     public String toString() {
         return "Order{" +
                 "id=" + id +
-                ", data=" + time +
+                ", time=" + time +
                 ", totalCost=" + totalCost +
                 '}';
     }

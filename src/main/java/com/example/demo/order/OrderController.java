@@ -31,5 +31,10 @@ public class OrderController {
         orderService.deleteOrder(orderId);
     }
 
+    @GetMapping(path = "{userId}")
+    public List<CustomerOrder> getOrdersByUserId(@PathVariable("userId") int userId){
+       return orderService.getOrdersByUserId(userId);
+    }
+
 
 }
