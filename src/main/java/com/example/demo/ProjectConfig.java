@@ -12,14 +12,16 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Configuration
 public class ProjectConfig {
 
     @Bean
     CommandLineRunner commandLineRunnerUser(
-            UserRepository userRepository){
+            UserRepository userRepository,ItemRepository itemRepository, OrderRepository orderRepository){
         return args -> {
             BurgerUser user1 = new BurgerUser(
 
@@ -32,12 +34,6 @@ public class ProjectConfig {
                     "adel",
                     12345
             );
-            userRepository.saveAll(List.of(user1,user2));
-        };
-    };
-    @Bean
-    CommandLineRunner commandLineRunnerItem (ItemRepository itemRepository){
-        return args -> {
             Item item1 = new Item(
                     "beef burger",
                     60,
@@ -48,27 +44,31 @@ public class ProjectConfig {
                     55,
                     200
             );
-            itemRepository.saveAll(List.of(item1,item2));
-        };
-
-    }
-
-    @Bean
-    CommandLineRunner commandLineRunnerOrder (OrderRepository orderRepository){
-        return args -> {
+            Set<Item> items =new HashSet<Item>();
+            items.add(item1);
+            items.add(item2);
             CustomerOrder order1 = new CustomerOrder(
                     "01-01-2020",
                     130.0,
-                    new BurgerUser(1,"Islam","Adel",1234567)
+                    user1
+
+
             );
+            order1.setItems(items);
             CustomerOrder order2 = new CustomerOrder(
                     "01-01-2020",
                     190.0,
-                    new BurgerUser(1,"mohamed","Adel",1234567)
+                    user2
+
             );
+            order2.setItems(items);
+
+            userRepository.saveAll(List.of(user1,user2));
             orderRepository.saveAll(List.of(order1,order2));
+            itemRepository.saveAll(List.of(item1,item2));
+
+
+
         };
-
-    }
-
+    };
 }

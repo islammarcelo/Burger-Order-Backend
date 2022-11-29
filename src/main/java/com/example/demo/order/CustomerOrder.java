@@ -1,8 +1,13 @@
 package com.example.demo.order;
 
+import com.example.demo.item.Item;
 import com.example.demo.user.BurgerUser;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
+
 @Entity
 @Table
 public class CustomerOrder {
@@ -24,6 +29,21 @@ public class CustomerOrder {
     @ManyToOne
     private BurgerUser burgerUser;
 
+
+    @ManyToMany(cascade = {
+            CascadeType.ALL
+    })
+    @JoinTable(
+            name = "order_items",
+            joinColumns = {
+                    @JoinColumn(name = "item_id")
+            },
+            inverseJoinColumns = {
+                    @JoinColumn(name = "order_id")
+            }
+    )
+    private Set<Item> items = new HashSet<>();
+
     public CustomerOrder() {
     }
 
@@ -31,6 +51,7 @@ public class CustomerOrder {
         this.time = time;
         this.totalCost = totalCost;
         this.burgerUser = burgerUser;
+
     }
 
     public CustomerOrder(int id, String time, double totalCost, BurgerUser burgerUser) {
@@ -38,6 +59,7 @@ public class CustomerOrder {
         this.time = time;
         this.totalCost = totalCost;
         this.burgerUser = burgerUser;
+
     }
 
     public int getId() {
@@ -71,6 +93,15 @@ public class CustomerOrder {
     public void setBurgerUser(BurgerUser burgerUser) {
         this.burgerUser = burgerUser;
     }
+
+    public Set<Item> getItems() {
+        return items;
+    }
+
+    public void setItems(Set<Item> items) {
+        this.items = items;
+    }
+
 
     @Override
     public String toString() {

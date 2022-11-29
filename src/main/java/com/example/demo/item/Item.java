@@ -1,6 +1,11 @@
 package com.example.demo.item;
 
+import com.example.demo.order.CustomerOrder;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table
@@ -19,16 +24,13 @@ public class Item {
     private int id;
     private String name;
     private double price;
-
     private int code;
 
-    public Item() {
-    }
+    @JsonIgnore
+    @ManyToMany(mappedBy = "items")
+    Set<CustomerOrder> orders = new HashSet<CustomerOrder>();
 
-    public Item(String name, double price, int code) {
-        this.name = name;
-        this.price = price;
-        this.code = code;
+    public Item() {
     }
 
     public Item(int id, String name, double price, int code) {
@@ -36,6 +38,14 @@ public class Item {
         this.name = name;
         this.price = price;
         this.code = code;
+
+    }
+
+    public Item(String name, double price, int code) {
+        this.name = name;
+        this.price = price;
+        this.code = code;
+
     }
 
     public int getId() {
@@ -68,6 +78,14 @@ public class Item {
 
     public void setCode(int code) {
         this.code = code;
+    }
+
+    public Set<CustomerOrder> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(Set<CustomerOrder> orders) {
+        this.orders = orders;
     }
 
     @Override
