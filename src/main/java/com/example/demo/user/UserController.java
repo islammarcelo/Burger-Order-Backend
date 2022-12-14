@@ -1,12 +1,13 @@
 package com.example.demo.user;
 
+import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping(path = "api/v1/user")
+@RequestMapping(path = "api/v1")
 public class UserController {
     final UserService userService;
     @Autowired
@@ -14,14 +15,27 @@ public class UserController {
         this.userService = userService;
     }
 
-    @GetMapping
+    @GetMapping("/getUsers")
     public List<BurgerUser> getUsers() {
         return userService.getUsers();
     }
 
-    @PostMapping
+    @PostMapping("/createUser")
     public void registerNewUser(@RequestBody BurgerUser burgerUser){
         userService.registerNewUser(burgerUser);
+    }
+
+    @PostMapping("/save/role")
+    public void saveRole(@RequestBody Role role){
+        userService.saveRole(role);
+    }
+
+    @PostMapping("/add/roleToUser")
+    public void addRoleToUser(@RequestBody RoleUserForm roleUserForm){
+        int roleId = roleUserForm.roleId;
+        int userId = roleUserForm.roleId;
+
+        userService.addRoleToUser(roleId,userId);
     }
 
     @DeleteMapping(path = "{userId}")
@@ -36,5 +50,11 @@ public class UserController {
                            @RequestParam(required = false) int phone){
         userService.updateUser(userId,fName,lName,phone);
     }
+
+}
+@Data
+class RoleUserForm{
+    int roleId;
+    int userId;
 
 }

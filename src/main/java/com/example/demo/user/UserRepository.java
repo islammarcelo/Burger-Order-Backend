@@ -12,4 +12,6 @@ public interface UserRepository extends JpaRepository<BurgerUser, Integer> {
     @Query("SELECT u FROM BurgerUser u WHERE u.phoneNumber = ?1")
     Optional<BurgerUser> findUserByPhoneNumber(int phoneNumber);
 
+
+
 }

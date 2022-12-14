@@ -1,39 +1,41 @@
 package com.example.demo.user;
 
+
+
 import javax.persistence.*;
+import javax.persistence.criteria.Fetch;
+import java.util.ArrayList;
+import java.util.Collection;
 
 @Entity
 @Table
+
 public class BurgerUser {
     @Id
-    @SequenceGenerator(
-            name = "user_sequence",
-            sequenceName = "user_sequence",
-            allocationSize = 1
-    )
-    @GeneratedValue(
-            strategy = GenerationType.SEQUENCE,
-            generator = "user_sequence"
-    )
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     private String fName;
     private String lName;
     private int phoneNumber;
+    @ManyToMany(fetch = FetchType.EAGER)
+    private Collection<Role> roles = new ArrayList<>();
 
     public BurgerUser() {
     }
 
-    public BurgerUser(int id, String fName, String lName, int phoneNumber) {
+    public BurgerUser(int id, String fName, String lName, int phoneNumber, Collection<Role> roles) {
         this.id = id;
         this.fName = fName;
         this.lName = lName;
         this.phoneNumber = phoneNumber;
+        this.roles = roles;
     }
 
-    public BurgerUser(String fName, String lName, int phoneNumber) {
+    public BurgerUser(String fName, String lName, int phoneNumber, Collection<Role> roles) {
         this.fName = fName;
         this.lName = lName;
         this.phoneNumber = phoneNumber;
+        this.roles = roles;
     }
 
     public int getId() {
@@ -66,6 +68,14 @@ public class BurgerUser {
 
     public void setPhoneNumber(int phoneNumber) {
         this.phoneNumber = phoneNumber;
+    }
+
+    public Collection<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Collection<Role> roles) {
+        this.roles = roles;
     }
 
     @Override
