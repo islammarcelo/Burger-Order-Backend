@@ -29,11 +29,11 @@ public class UserService {
         roleRepository.save(role);
     }
 
-    public void addRoleToUser(int roleId, int userId) {
-        BurgerUser burgerUser = userRepository.findById(userId).orElseThrow(() -> new IllegalStateException(
-                "User with this id " + userId + " dose not exists"));
-        Role role = roleRepository.findById(roleId).orElseThrow(() -> new IllegalStateException(
-                "Role with this id " + roleId + " dose not exists"));
+    public void addRoleToUser(String roleName, int phoneNumber) {
+        BurgerUser burgerUser = getBurgerUser(phoneNumber).orElseThrow(() -> new IllegalStateException(
+                "User with this phone " + phoneNumber + " dose not exists"));
+        Role role = roleRepository.findRoleByName(roleName).orElseThrow(() -> new IllegalStateException(
+                "Role with this " + roleName + " dose not exists"));
 
         burgerUser.getRoles().add(role);
 

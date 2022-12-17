@@ -32,7 +32,7 @@ public class CustomerOrder {
 
 
     @ManyToMany(cascade = {
-            CascadeType.ALL
+            CascadeType.MERGE
     })
     @JoinTable(
             name = "order_items",
@@ -48,18 +48,25 @@ public class CustomerOrder {
     public CustomerOrder() {
     }
 
-    public CustomerOrder(String time, double totalCost, BurgerUser burgerUser) {
+    public CustomerOrder(String time, double totalCost) {
         this.time = time;
         this.totalCost = totalCost;
-        this.burgerUser = burgerUser;
+
 
     }
 
-    public CustomerOrder(int id, String time, double totalCost, BurgerUser burgerUser) {
-        this.id = id;
+    public CustomerOrder(String time, double totalCost, BurgerUser burgerUser, Set<Item> items) {
         this.time = time;
         this.totalCost = totalCost;
         this.burgerUser = burgerUser;
+        this.items = items;
+    }
+
+    public CustomerOrder(int id, String time, double totalCost) {
+        this.id = id;
+        this.time = time;
+        this.totalCost = totalCost;
+
 
     }
 

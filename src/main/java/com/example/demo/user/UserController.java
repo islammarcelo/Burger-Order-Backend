@@ -32,10 +32,10 @@ public class UserController {
 
     @PostMapping("/add/roleToUser")
     public void addRoleToUser(@RequestBody RoleUserForm roleUserForm){
-        int roleId = roleUserForm.roleId;
-        int userId = roleUserForm.roleId;
+        String roleName = roleUserForm.roleName;
+        int userPhone = roleUserForm.userPhoneNumber;
 
-        userService.addRoleToUser(roleId,userId);
+        userService.addRoleToUser(roleName,userPhone);
     }
 
     @DeleteMapping(path = "{userId}")
@@ -54,7 +54,7 @@ public class UserController {
 }
 @Data
 class RoleUserForm{
-    int roleId;
-    int userId;
+    String roleName;
+    int userPhoneNumber;
 
 }

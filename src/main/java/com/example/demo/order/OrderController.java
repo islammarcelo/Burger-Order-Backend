@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(path = "/api/v1/order")
+@RequestMapping(path = "/api/v1")
 public class OrderController {
 
     final OrderService orderService;
@@ -16,22 +16,22 @@ public class OrderController {
         this.orderService = orderService;
     }
 
-    @GetMapping
+    @GetMapping("/getOrders")
     public List<CustomerOrder> getOrders(){
         return orderService.getOrders();
     }
 
-    @PostMapping
+    @PostMapping("/addOrder")
     public void addOrder(@RequestBody CustomerOrder customerOrder){
         orderService.AddOrder(customerOrder);
     }
 
-    @DeleteMapping(path = "{orderId}")
+    @DeleteMapping(path = "/deleteOrder/{orderId}")
     public void deleteOrder(@PathVariable("orderId")int orderId){
         orderService.deleteOrder(orderId);
     }
 
-    @GetMapping(path = "{userId}")
+    @GetMapping(path = "/getUserOrder{userId}")
     public List<CustomerOrder> getOrdersByUserId(@PathVariable("userId") int userId){
        return orderService.getOrdersByUserId(userId);
     }

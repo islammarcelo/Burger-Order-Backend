@@ -1,7 +1,6 @@
 package com.example.demo.user;
 
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
+
 
 import javax.persistence.*;
 

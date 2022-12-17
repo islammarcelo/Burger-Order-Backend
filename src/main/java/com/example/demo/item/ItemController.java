@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(path = "/api/v1/item")
+@RequestMapping(path = "/api/v1")
 public class ItemController {
     final ItemService itemService;
     @Autowired
@@ -14,22 +14,22 @@ public class ItemController {
         this.itemService = itemService;
     }
 
-    @GetMapping
+    @GetMapping("/getItems")
     List<Item> getItems(){
         return itemService.getItems();
     }
 
-    @PostMapping
+    @PostMapping("/addItem")
     public void addNewItem(@RequestBody Item item){
         itemService.addNewItem(item);
     }
 
-    @DeleteMapping(path = "{itemId}")
+    @DeleteMapping(path = "/deleteItem/{itemId}")
     public void deleteItem(@PathVariable("itemId") int itemId){
         itemService.deleteItem(itemId);
     }
 
-    @PutMapping(path = "{itemId}")
+    @PutMapping(path = "updateItem/{itemId}")
     public void updateItem(@PathVariable("itemId") int itemId,
                            @RequestParam(required = false) String name,
                            @RequestParam(required = false) double price,
