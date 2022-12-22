@@ -21,11 +21,11 @@ public class ProjectConfig {
         return args -> {
             userService.saveRole(new Role("user"));
             userService.saveRole(new Role("admin"));
-            BurgerUser burgerUser1 = new BurgerUser("islam","adel",12345,new ArrayList<>());
+            BurgerUser burgerUser1 = new BurgerUser("islam","1234",12345,new ArrayList<>());
             userService.registerNewUser(burgerUser1);
-            BurgerUser burgerUser2 = new BurgerUser("hamada","adel",123456,new ArrayList<>());
+            BurgerUser burgerUser2 = new BurgerUser("hamada","1234",123456,new ArrayList<>());
             userService.registerNewUser(burgerUser2);
-            BurgerUser burgerUser3 = new BurgerUser("gehad","adel",123457,new ArrayList<>());
+            BurgerUser burgerUser3 = new BurgerUser("gehad","1234",123457,new ArrayList<>());
             userService.registerNewUser(burgerUser3);
 
             userService.addRoleToUser("user",12345);

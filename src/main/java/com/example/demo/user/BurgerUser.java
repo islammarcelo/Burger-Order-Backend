@@ -3,7 +3,6 @@ package com.example.demo.user;
 
 
 import javax.persistence.*;
-import javax.persistence.criteria.Fetch;
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -14,8 +13,8 @@ public class BurgerUser {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
-    private String fName;
-    private String lName;
+    private String username;
+    private String password;
     private int phoneNumber;
     @ManyToMany(fetch = FetchType.EAGER)
     private Collection<Role> roles = new ArrayList<>();
@@ -23,17 +22,17 @@ public class BurgerUser {
     public BurgerUser() {
     }
 
-    public BurgerUser(int id, String fName, String lName, int phoneNumber, Collection<Role> roles) {
+    public BurgerUser(int id, String username, String password, int phoneNumber, Collection<Role> roles) {
         this.id = id;
-        this.fName = fName;
-        this.lName = lName;
+        this.username = username;
+        this.password = password;
         this.phoneNumber = phoneNumber;
         this.roles = roles;
     }
 
-    public BurgerUser(String fName, String lName, int phoneNumber, Collection<Role> roles) {
-        this.fName = fName;
-        this.lName = lName;
+    public BurgerUser( String username, String password, int phoneNumber, Collection<Role> roles) {
+        this.username = username;
+        this.password = password;
         this.phoneNumber = phoneNumber;
         this.roles = roles;
     }
@@ -46,20 +45,20 @@ public class BurgerUser {
         this.id = id;
     }
 
-    public String getfName() {
-        return fName;
+    public String getUsername() {
+        return username;
     }
 
-    public void setfName(String fName) {
-        this.fName = fName;
+    public void setUsername(String username) {
+        this.username = this.username;
     }
 
-    public String getlName() {
-        return lName;
+    public String getPassword() {
+        return password;
     }
 
-    public void setlName(String lName) {
-        this.lName = lName;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public int getPhoneNumber() {
@@ -82,8 +81,8 @@ public class BurgerUser {
     public String toString() {
         return "User{" +
                 "id=" + id +
-                ", fName='" + fName + '\'' +
-                ", lName='" + lName + '\'' +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
                 ", phoneNumber=" + phoneNumber +
                 '}';
     }

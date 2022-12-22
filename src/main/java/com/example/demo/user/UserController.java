@@ -43,13 +43,14 @@ public class UserController {
         userService.deleteUser(userId);
     }
 
-    @PutMapping(path = "{userId}")
+/*    @PutMapping(path = "{userId}")
     public void updateUser(@PathVariable("userId") int userId,
                            @RequestParam(required = false) String fName,
                            @RequestParam(required = false) String lName,
                            @RequestParam(required = false) int phone){
         userService.updateUser(userId,fName,lName,phone);
     }
+ */
 
 }
 @Data
